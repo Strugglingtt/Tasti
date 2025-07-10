@@ -26,9 +26,8 @@ func InitDB() {
 	sqlDB, err := DB.DB()
 	if err != nil {
 	}
-	defer sqlDB.Close()
 	// 迁移 schema
-	DB.AutoMigrate()
+	DB.AutoMigrate(&User{})
 
 	err = sqlDB.Ping()
 	if err != nil {

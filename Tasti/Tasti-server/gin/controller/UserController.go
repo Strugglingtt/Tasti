@@ -12,8 +12,8 @@ type UserController struct{}
 func (c *UserController) Register(ctx *gin.Context) {
 	//通过接口获取用户输入的数据，要求使用json数据进行返回
 	userInfo := request.RegisterRequest{}
-	err := ctx.ShouldBindJSON(userInfo)
-	if err != nil {
+
+	if err := ctx.ShouldBindJSON(&userInfo); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"status": 0, "error": err.Error()})
 		return
 	}
